@@ -1,205 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMI Calculator</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #87ceeb;
-            --secondary-color: #4682b4;
-            --background-color: #f7f7f7;
-            --text-color: #666;
-            --border-color: #ddd;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-image: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
-            background-attachment: fixed;
-            background-size: cover;
-        }
-        .container {
-            margin-top: 50px;
-            padding: 20px;
-            background-color: var(--background-color);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border-color);
-        }
-        .card-header {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: #fff;
-            padding: 10px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-        .card-body {
-            padding: 20px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: var(--text-color);
-        }
-        .form-control {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-        .btn-primary {
-            background: linear-gradient(to right, #4caf50, #3e8e41);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            color: #fff;
-            cursor: pointer;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            transition: background 0.3s ease;
-        }
-        .btn-primary:hover {
-            background: linear-gradient(to right, #3e8e41, #34782a);
-        }
-        /* Modal styles */
-        .modal-content {
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .modal-header {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: #fff;
-            padding: 10px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-        .modal-body {
-            padding: 20px;
-        }
-        .modal-footer {
-            background-color: var(--background-color);
-            padding: 10px;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-        }
-        .close {
-            color: #fff;
-            opacity: 1;
-        }
-        .close:hover {
-            color: #ccc;
-        }
-        /* Animations */
-        .animate {
-            animation: animate 0.5s;
-        }
-        @keyframes animate {
-            0% {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        /* Media queries */
-        @media (max-width: 768px) {
-            .container {
-                margin-top: 20px;
-            }
-        }
-        @media (max-width: 480px) {
-            .container {
-                margin-top: 10px;
-            }
-            .card-header {
-                padding: 5px;
-            }
-            .card-body {
-                padding: 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">EMI Calculator</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            </ul>
+
+    <div class="container">
+        <h2><i class="fas fa-calculator"></i> EMI Calculator</h2>
+
+        <div class="input-group">
+            <label for="loanAmount"><i class="fas fa-money-bill-wave"></i> Loan Amount:</label>
+            <input type="number" id="loanAmount" placeholder="Enter Loan Amount">
         </div>
-    </nav>
-    <div class="container animate">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mb-0"><i class="fas fa-calculator"></i> EMI Calculator</h5>
-            </div>
-            <div class="card-body">
-                <form id="emi-form">
-                    <div class="form-group">
-                        <label for="loan-amount"><i class="fas fa-rupee-sign"></i> Loan Amount:</label>
-                        <input type="number" class="form-control" id="loan-amount" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="interest-rate"><i class="fas fa-chart-line"></i> Interest Rate (%):</label>
-                        <input type="number" class="form-control" id="interest-rate" step="0.01" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="loan-term"><i class="fas fa-calendar-alt"></i> Loan Term (years):</label>
-                        <input type="number" class="form-control" id="loan-term" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-calculator"></i> Calculate EMI</button>
-                </form>
-            </div>
+
+        <div class="input-group">
+            <label for="interestRate"><i class="fas fa-percentage"></i> Interest Rate (Annual %):</label>
+            <input type="number" id="interestRate" placeholder="Enter Interest Rate">
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="result-modal" tabindex="-1" role="dialog" aria-labelledby="result-modal-label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="result-modal-label"><i class="fas fa-info-circle"></i> Calculation Results</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p id="emi-result"></p>
-                        <p id="total-interest-result"></p>
-                        <p id="total-amount-result"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times-circle"></i> Close</button>
-                    </div>
-                </div>
-            </div>
+
+        <div class="input-group">
+            <label for="loanTenure"><i class="fas fa-calendar-alt"></i> Loan Tenure (Months):</label>
+            <input type="number" id="loanTenure" placeholder="Enter Loan Tenure">
+        </div>
+
+        <button onclick="calculateEMI()"><i class="fas fa-play-circle"></i> Calculate EMI</button>
+
+        <div id="result">
+            <h3><i class="fas fa-chart-line"></i> EMI Result:</h3>
+            <p>Monthly EMI: <span id="emiValue">₹0</span></p>
+            <p>Total Payment: <span id="totalPayment">₹0</span></p>
+            <p>Total Interest: <span id="totalInterest">₹0</span></p>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#emi-form').submit(function(e) {
-                e.preventDefault();
-                var loanAmount = parseFloat($('#loan-amount').val());
-                var interestRate = parseFloat($('#interest-rate').val()) / 100 / 12;
-                var loanTerm = parseInt($('#loan-term').val()) * 12;
-                var emi = (loanAmount * interestRate * Math.pow(1 + interestRate, loanTerm)) / (Math.pow(1 + interestRate, loanTerm) - 1);
-                var totalInterest = emi * loanTerm - loanAmount;
-                var totalAmount = loanAmount + totalInterest;
-                $('#emi-result').text('EMI: ₹' + emi.toFixed(2));
-                $('#total-interest-result').text('Total Interest: ₹' + totalInterest.toFixed(2));
-                $('#total-amount-result').text('Total Amount: ₹' + totalAmount.toFixed(2));
-                $('#result-modal').modal('show');
-            });
-        });
-    </script>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
